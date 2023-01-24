@@ -9,6 +9,7 @@ RUN apt-get update \
 WORKDIR /usr/local/src/openjtalk-rest-api
 
 COPY . /usr/local/src/openjtalk-rest-api
+COPY ./data/htsvoice /usr/local/share/htsvoice
 
 RUN pip install .
 
