@@ -12,29 +12,29 @@ logger = getLogger(__name__)
 app = FastAPI()
 
 origins = [
-    'http://localhost:8080',
+    "http://localhost:8080",
 ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_methods=['*']
-)
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"])
+
 
 class WavResponse(Response):
-    media_type = 'audio/wav'
+    media_type = "audio/wav"
 
-@app.get('/hello')
+
+@app.get("/hello")
 def get_hello():
     return "hello"
 
 
-@app.get('/available_voices')
+@app.get("/available_voices")
 def get_available_voices():
     return available_voices
 
 
-@app.post('/synthesize', response_class=WavResponse)
-async def post_synthesize(q: SynQuery,):
+@app.post("/synthesize", response_class=WavResponse)
+async def post_synthesize(
+    q: SynQuery,
+):
     data = await tts(q)
     return WavResponse(data)
