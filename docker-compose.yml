@@ -9,3 +9,5 @@ services:
     volumes:
       - ./:/usr/local/src/openjtalk-rest-api
       - ./data/htsvoice:/usr/local/share/htsvoice
+    environment:
+      - TZ=Asia/Tokyo
