@@ -8,3 +8,4 @@ services:
     command: 'uvicorn openjtalk_rest_api.main:app --reload --host 0.0.0.0'
     volumes:
       - ./:/usr/local/src/openjtalk-rest-api
+      - ./data/htsvoice:/usr/local/share/htsvoice

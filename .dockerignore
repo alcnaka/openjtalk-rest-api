@@ -1,2 +1,4 @@
 .venv
 .env
+/data/htsvoice
+!/data/htsvoice/mei_normal.htsvoice

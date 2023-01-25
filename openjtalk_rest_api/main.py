@@ -1,4 +1,4 @@
-from logging import getLogger, Filter
+from logging import getLogger
 
 from fastapi import FastAPI
 from fastapi.responses import Response, HTMLResponse
