@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field, validator
 from fastapi import HTTPException
 
 from openjtalk_rest_api.config import get_voice_path, DICT_PATH, available_voices
+from openjtalk_rest_api.effects import normalize
 
 logger = getLogger(__name__)
 
@@ -26,6 +27,7 @@ class SynQuery(BaseModel):
     pitch: float = Field(default=0, ge=-24, le=24)
     vtype: float = Field(default=0.5, ge=-0.8, le=0.8)
     syn_text: str = Field(min_length=1, max_length=200)
+    normalize: bool | None = Field(default=True)
 
     @validator('voice')
     def is_available_voice(cls, v):
@@ -46,7 +48,7 @@ def construct_command(q: SynQuery):
     ])
 
 
-async def tts(q: SynQuery) -> bytes:
+async def _tts(q: SynQuery) -> bytes:
     cmd = construct_command(q)
     logger.debug(f'EXE: {cmd}')
     logger.debug(f'syntext: {q.syn_text}')
@@ -65,3 +67,10 @@ async def tts(q: SynQuery) -> bytes:
         raise RuntimeError('openjtalk command failed')
 
     return stdout_data
+
+
+async def tts(q: SynQuery) -> bytes:
+    data = await _tts(q)
+    if q.normalize:
+        data = normalize(data)
+    return data
