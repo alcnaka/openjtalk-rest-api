@@ -1,7 +1,7 @@
 from logging import getLogger
 
 from fastapi import FastAPI
-from fastapi.responses import Response, HTMLResponse
+from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from openjtalk_rest_api.jtalk import SynQuery, tts
