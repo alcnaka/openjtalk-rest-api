@@ -24,7 +24,7 @@ class SynQuery(BaseModel):
     voice: str = Field(default='mei_normal')
     speed: float = Field(default=1, ge=0.5, le=2)
     pitch: float = Field(default=0, ge=-24, le=24)
-    vtype: float = Field(default=0.5, ge=0.25, le=0.75)
+    vtype: float = Field(default=0.5, ge=-0.8, le=0.8)
     syn_text: str = Field(min_length=1, max_length=200)
 
     @validator('voice')
