@@ -9,10 +9,20 @@ logger = getLogger(__name__)
 
 
 def normalize(data: bytes) -> bytes:
+    """Wav形式のbytesオブジェクトをnormalize
+
+    Args:
+        data (bytes): wav data
+
+    Returns:
+        bytes: normalized wav data
+    """
+    # pydubのAudioSegmentとして読み込み
     seg = AudioSegment(data)
-    logger.debug(str(seg))
-    _data = _normalize(seg)
-    logger.debug(str(_data))
-    result = BytesIO()
-    _data.export(result, format="wav")
-    return result.read()
+    # normalize処理
+    normalied_seg = _normalize(seg)
+    # メモリ上の領域にbytesを持つ
+    tmp = BytesIO()
+    # メモリ上にwav形式のbytesで書き出し
+    normalied_seg.export(tmp, format="wav")
+    return tmp.read()
