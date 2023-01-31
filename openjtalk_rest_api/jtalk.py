@@ -5,7 +5,7 @@ from logging import getLogger
 from pydantic import BaseModel, Field, validator
 from fastapi import HTTPException
 
-from openjtalk_rest_api.config import get_voice_path, DICT_PATH, available_voices
+from openjtalk_rest_api.config import get_voice_path, DICT_PATH, available_voices  # noqa: E501
 from openjtalk_rest_api.effects import normalize
 
 logger = getLogger(__name__)
