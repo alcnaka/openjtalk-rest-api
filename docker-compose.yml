@@ -3,6 +3,7 @@ version: '3'
 services:
   ojt-api:
     build: .
+    image: alcnaka/openjtalk-rest-api_ojt-api
     ports:
       - 8000:8000
     command: 'uvicorn openjtalk_rest_api.main:app --reload --host 0.0.0.0'
