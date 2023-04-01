@@ -3,6 +3,7 @@ FROM python:3.11
 RUN apt-get update \
     && apt-get -y install \
     curl \
+    ffmpeg \
     open-jtalk \
     open-jtalk-mecab-naist-jdic
 
